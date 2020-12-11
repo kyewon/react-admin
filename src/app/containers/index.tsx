@@ -7,7 +7,10 @@ export namespace MainApp {
   export interface Props extends RouteComponentProps<void> {}
 }
 
-export const MainApp = ({ history, location }: MainApp.Props) => {
+export const MainApp = ({ history, location, match }: MainApp.Props) => {
+  console.log('RouteComponentProps match =>', match)
+  console.log('RouteComponentProps history =>', history)
+  console.log('RouteComponentProps location =>', location)
   const { employeeState, fetchEmployees } = useEmployee()
   useEffect(() => {
     fetchEmployees()

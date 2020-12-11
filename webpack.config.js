@@ -13,6 +13,7 @@ module.exports = {
     app: './main.tsx',
   },
     output: {
+    // publicPath: '/',
     path: outPath,
     filename: '[hash].js',
     chunkFilename: '[name].[hash].js'
@@ -46,11 +47,11 @@ module.exports = {
           'style-loader', 'css-loader',
         ]
       },
-      {
-        test: /\.(js|jsx|tsx|ts)?$/,
-        include: /node_modules/,
-        use: ['react-hot-loader/webpack'],
-      },
+      // {
+      //   test: /\.(js|jsx|tsx|ts)?$/,
+      //   include: /node_modules/,
+      //   use: ['react-hot-loader/webpack'],
+      // },
     ],
   },
   plugins: [
@@ -71,4 +72,9 @@ module.exports = {
       },
     }),
   ],
+  devServer: {
+    contentBase: sourcePath,
+    hot: true,
+    historyApiFallback: true,
+  },
 };
