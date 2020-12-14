@@ -1,6 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { RouteComponentProps } from 'react-router';
-import { Sample, Employee } from 'app/components';
+import { IRootState } from 'app/reducers';
+import styled from 'styled-components';
+import { Constants } from 'app/styleConstants'
+import { Sample, Employee, Header, GlobalStyle } from 'app/components';
 import { useEmployee } from 'app/sagas/hooks/useEmployee'
 
 export namespace MainApp {
@@ -8,20 +12,19 @@ export namespace MainApp {
 }
 
 export const MainApp = ({ history, location, match }: MainApp.Props) => {
-  console.log('RouteComponentProps match =>', match)
-  console.log('RouteComponentProps history =>', history)
-  console.log('RouteComponentProps location =>', location)
-  const { employeeState, fetchEmployees } = useEmployee()
-  useEffect(() => {
-    fetchEmployees()
-    console.log('employeeState=>', employeeState)
-  }, [])
+  // const { employeeState, fetchEmployees } = useEmployee()
+  // useEffect(() => {
+  //   fetchEmployees()
+  //   console.log('employeeState=>', employeeState)
+  // }, [])
+  const adminUser = useSelector((state: IRootState) => state.admin);
 
   return (
     <div>
-      <h1> in containers.</h1>
+      <Header admin = {adminUser}/>
       <Sample />
-      <Employee employees= {employeeState} />
+      {/* <Employee employees= {employeeState} /> */}
+      <GlobalStyle/>
     </div>
   );
 };
