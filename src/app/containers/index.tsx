@@ -4,8 +4,9 @@ import { RouteComponentProps } from 'react-router';
 import { IRootState } from 'app/reducers';
 import styled from 'styled-components';
 import { Constants } from 'app/styleConstants'
-import { Sample, Employee, Header, GlobalStyle } from 'app/components';
+import { Sample, Employee, Header, GlobalStyle, Category } from 'app/components';
 import { useEmployee } from 'app/sagas/hooks/useEmployee'
+import { Helmet } from 'react-helmet-async';
 
 export namespace MainApp {
   export interface Props extends RouteComponentProps<void> {}
@@ -17,12 +18,22 @@ export const MainApp = ({ history, location, match }: MainApp.Props) => {
   //   fetchEmployees()
   //   console.log('employeeState=>', employeeState)
   // }, [])
+
   const adminUser = useSelector((state: IRootState) => state.admin);
+  const category = useSelector((state: IRootState) => state.category);
 
   return (
     <div>
+      <Helmet
+              defer={false}
+              // htmlAttributes={{ lang: 'pt-br' }}
+              encodeSpecialCharacters={true}
+              defaultTitle={Constants.Theme.appName}
+              titleAttributes={{ itemprop: 'name', lang: 'pt-br' }}
+            />
       <Header admin = {adminUser}/>
-      <Sample />
+      <Category category = {category}/>
+      {/* <Sample /> */}
       {/* <Employee employees= {employeeState} /> */}
       <GlobalStyle/>
     </div>

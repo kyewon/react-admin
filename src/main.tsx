@@ -4,18 +4,21 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { configureStore } from 'app/store';
 import { MainApp } from 'app/containers'
+import { HelmetProvider } from 'react-helmet-async';
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <Switch>
-          <Route exact path="/" component={MainApp} />
-          {/* Not Found */}
-          <Route component={() => <Redirect to="/" />} />
-        </Switch>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <Switch>
+            <Route exact path="/" component={MainApp} />
+            {/* Not Found */}
+            <Route component={() => <Redirect to="/" />} />
+          </Switch>
+      </Router>
+    </HelmetProvider>
   </Provider>,
   document.getElementById('root')
 );
