@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { Constants } from 'app/styleConstants'
 import { IAdminState, useAdminActions } from 'app/actions/admin'
+import { Link } from 'react-router-dom'
 
 const HeaderWrapper = styled.header`
   background-color: ${Constants.Theme.headerColor};
@@ -26,7 +27,7 @@ const HeaderContainer = styled.div`
   padding-right: 6px;
 `;
 
-const Logout = styled.button`
+const Logout = styled.div`
   align-items: center;
   color: #fff;
   display: flex;
@@ -44,6 +45,15 @@ const Logout = styled.button`
   }
 `;
 
+const LinkStyle = styled.span `
+a {
+  color: ${Constants.Theme.black};
+}
+&:hover {
+  font-weight: bold;
+  cursor: pointer;
+}`;
+
 export namespace Header {
   export interface Props {
     admin: IAdminState,
@@ -56,25 +66,21 @@ export const Header = ({ admin }: Header.Props): JSX.Element =>  {
   const adminActions = useAdminActions(dispatch)
   // const clickLogout = () => adminActions.adminLogout
   const clickLogout = React.useCallback(
-    () => adminActions.adminLogout,
+    () => {
+      adminActions.adminLogout
+    },
     [admin]
   )
-
-  const checkedLogIn = React.useCallback((isAuthenticated: boolean): JSX.Element => {
-    return ((isAuthenticated) ? (<div><span>{admin.name}</span><span>logout</span></div>) 
-    : (<span>login</span>)
-  )}, [admin])
 
   return (
     <HeaderWrapper>
       <HeaderContainer>
         <div><h2>BOLD</h2></div>
         <Logout onClick={clickLogout()}>
-        {/* {checkedLogIn(admin.isAuthenticated)} */}
         <div>{admin.isAuthenticated ? 
         (<div>
-          <span style={{paddingRight: '20px'}}>{admin.email}</span>
-          <span>logout</span>
+          <span style={{paddingRight: '20px', color: Constants.Theme.black}}>{admin.email}</span>
+          <LinkStyle><Link to ='/'> logout </Link></LinkStyle>
         </div>) : (<span>TODO: 로그아웃처리</span>)}</div>
         </Logout>
       </HeaderContainer>

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-// import { RouteComponentProps } from 'react-router';
 import { IRootState } from 'app/reducers';
 import { Constants } from 'app/styleConstants'
-import { Sample, Employee, Header, GlobalStyle, Category, MainContent, RightContent } from 'app/components';
+import { Sample, Employee, Header, GlobalStyle, Category, MainContent, RightContent, Home } from 'app/components';
 import { useEmployee } from 'app/sagas/hooks/useEmployee'
 import { Helmet } from 'react-helmet-async';
 import { Router, Switch, Route, RouteComponentProps, Redirect } from 'react-router-dom';
@@ -34,21 +33,23 @@ export namespace MainApp {
 export const MainApp = ({ history, location, match }: MainApp.Props) => {
   // console.log('MainApp match => ', match)
   const { employeeState, fetchEmployees } = useEmployee()
-  useEffect(() => {
-    fetchEmployees()
-    console.log('employeeState=>', employeeState)
-  }, [])
+  // useEffect(() => {
+  //   fetchEmployees()
+  //   console.log('employeeState=>', employeeState)
+  // }, [])
 
   const adminUser = useSelector((state: IRootState) => state.admin);
   const category = useSelector((state: IRootState) => state.category);
+  const isLogin = adminUser.isAuthenticated
 
   return (
     <div>
+      {isLogin && <div>
       <Helmet
-              defer={false}
-              encodeSpecialCharacters={true}
-              defaultTitle={Constants.Theme.appName}
-              titleAttributes={{ itemprop: 'name', lang: 'pt-br' }}
+        defer={false}
+        encodeSpecialCharacters={true}
+        defaultTitle={Constants.Theme.appName}
+        titleAttributes={{ itemprop: 'name', lang: 'pt-br' }}
             />
       <Header admin = {adminUser}/>
       <Category category = {category}/>
@@ -60,6 +61,8 @@ export const MainApp = ({ history, location, match }: MainApp.Props) => {
       {RightWrapper(<div>in right area.</div>)}
       {/* <Employee employees= {employeeState} /> */}
       <GlobalStyle/>
+      </div>}
+      {/* {!isLogin && <Home isLogin = {isLogin}/>} */}
     </div>
   );
 };

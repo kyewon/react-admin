@@ -11,6 +11,7 @@ export namespace Constants {
     mainContentColor: '#ffffff',
     rightContentColor: '#DCDCDC',
     appColor: '#000000',
-    white: '#ffffff'
+    white: '#ffffff',
+    black: '#000000'
   }
 }
