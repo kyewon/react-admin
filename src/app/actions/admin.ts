@@ -15,10 +15,10 @@ export namespace AdminActions {
     ADMIN_LOGOUT = 'ADMIN/LOG_OUT',
   }
 
-  export const adminLogin = createAction<IAdminState>(Type.ADMIN_LOGIN)
-  export const adminLogout = createAction<IAdminState>(Type.ADMIN_LOGOUT)
+  export const login = createAction<IAdminState>(Type.ADMIN_LOGIN)
+  export const logout = createAction<IAdminState>(Type.ADMIN_LOGOUT)
   
-  export type ReturnActionType = ReturnType<typeof adminLogin> | ReturnType<typeof adminLogout>
+  export type ReturnActionType = ReturnType<typeof login> | ReturnType<typeof logout>
 }
 
 export const useAdminActions = (dispatch: Dispatch) => {

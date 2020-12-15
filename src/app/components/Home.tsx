@@ -1,6 +1,8 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components';
 import { Constants } from 'app/styleConstants'
+import { IAdminState, useAdminActions } from 'app/actions/admin'
 import { Link } from 'react-router-dom'
 
 const HomeWrapper = styled.div`
@@ -54,12 +56,21 @@ a {
 }`;
 
 export const Home = (): JSX.Element =>  {
+
+  const dispatch = useDispatch()
+  const adminActions = useAdminActions(dispatch)
+  const clickLogin = React.useCallback(
+    () => adminActions.login,
+    []
+  )
+
   return (
     <HomeWrapper>
       <div>데모버전입니다.</div>
       <div>버튼클릭시 로그인 됩니다.</div>
 
-      <div><LinkStyle><Link to ='/main'> LOGIN </Link></LinkStyle></div>
+      <div><LinkStyle onClick={clickLogin()}><Link to ='/main'> LOGIN </Link></LinkStyle></div>
+      {/* <div><LinkStyle><Link to ='/main'> LOGIN </Link></LinkStyle></div> */}
     </HomeWrapper>
   )
 }

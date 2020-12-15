@@ -5,7 +5,7 @@ import { IAdminState, AdminActions } from 'app/actions';
 const initialState: RootState.AdminState = {
   name: 'tester',
   email: 'tester@mxxnlighter.com',
-  isAuthenticated: true,
+  isAuthenticated: false,
 }
 
 export const adminReducer = handleActions<RootState.AdminState, IAdminState>(

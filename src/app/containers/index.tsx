@@ -62,7 +62,7 @@ export const MainApp = ({ history, location, match }: MainApp.Props) => {
       {/* <Employee employees= {employeeState} /> */}
       <GlobalStyle/>
       </div>}
-      {/* {!isLogin && <Home isLogin = {isLogin}/>} */}
+      {!isLogin && <Home/>}
     </div>
   );
 };

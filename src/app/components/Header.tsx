@@ -64,23 +64,20 @@ export const Header = ({ admin }: Header.Props): JSX.Element =>  {
 
   const dispatch = useDispatch()
   const adminActions = useAdminActions(dispatch)
-  // const clickLogout = () => adminActions.adminLogout
   const clickLogout = React.useCallback(
-    () => {
-      adminActions.adminLogout
-    },
-    [admin]
+    () => adminActions.logout,
+    []
   )
 
   return (
     <HeaderWrapper>
       <HeaderContainer>
         <div><h2>BOLD</h2></div>
-        <Logout onClick={clickLogout()}>
+        <Logout>
         <div>{admin.isAuthenticated ? 
         (<div>
           <span style={{paddingRight: '20px', color: Constants.Theme.black}}>{admin.email}</span>
-          <LinkStyle><Link to ='/'> logout </Link></LinkStyle>
+          <LinkStyle onClick={clickLogout()}><Link to ='/'> logout </Link></LinkStyle>
         </div>) : (<span>TODO: 로그아웃처리</span>)}</div>
         </Logout>
       </HeaderContainer>
