@@ -30,12 +30,11 @@ const ItemStyle = styled.div`
 
 export namespace Category {
   export interface Props {
-    category: ICategoryState
+    category: ICategoryState,
   }
 }
 
 export const Category = ({ category }: Category.Props): JSX.Element =>  {
-
   const dispatch = useDispatch()
   const categoryActions = useCategoryActions(dispatch)
   const clickItemListener = React.useCallback(
@@ -49,6 +48,7 @@ export const Category = ({ category }: Category.Props): JSX.Element =>  {
     <CategoryWrapper>
       <CategoryContainer>
         {category.items.map(item => {return <div key={item.key} onClick={() => clickItemListener(item.key)}><ItemStyle><div style={{padding: '5px 5px 20px 5px'}}> {item.name} </div></ItemStyle></div>})}
+        {/* {category.items.map(item => {return <Link to={`/category/${item.key}`} key={item.key} onClick={() => clickItemListener(item.key)}><ItemStyle><div style={{padding: '5px 5px 20px 5px'}}> {item.name} </div></ItemStyle></Link>})} */}
       </CategoryContainer>
     </CategoryWrapper>
   )
