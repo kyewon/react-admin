@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { IRootState } from 'app/reducers';
 import styled from 'styled-components';
 import { Constants } from 'app/styleConstants'
-import { Sample, Employee, Header, GlobalStyle, Category } from 'app/components';
+import { Sample, Employee, Header, GlobalStyle, Category, MainContent, RightContent } from 'app/components';
 import { useEmployee } from 'app/sagas/hooks/useEmployee'
 import { Helmet } from 'react-helmet-async';
 
@@ -33,7 +33,16 @@ export const MainApp = ({ history, location, match }: MainApp.Props) => {
             />
       <Header admin = {adminUser}/>
       <Category category = {category}/>
-      {/* <Sample /> */}
+      <MainContent.Wrapper>
+        <MainContent.Container>
+          <div>MainContent area!!!</div>
+        </MainContent.Container>
+      </MainContent.Wrapper>
+      <RightContent.Wrapper>
+        <RightContent.Container>
+          <div>RightContent area!!!</div>
+        </RightContent.Container>
+      </RightContent.Wrapper>
       {/* <Employee employees= {employeeState} /> */}
       <GlobalStyle/>
     </div>

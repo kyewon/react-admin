@@ -8,7 +8,7 @@ const CategoryWrapper = styled.div`
   background-color: ${Constants.Theme.categoryColor};
   margin-top: ${Constants.Theme.headerHeight}px;
   height: 100%;
-  width: 20%;
+  width: ${Constants.Theme.categoryWidth};
   position: fixed;
 
 `;
@@ -35,12 +35,11 @@ export namespace Category {
 }
 
 export const Category = ({ category }: Category.Props): JSX.Element =>  {
-  
+
   const dispatch = useDispatch()
   const categoryActions = useCategoryActions(dispatch)
   const clickItemListener = React.useCallback(
     (key: number) => {
-      console.log('check key => ', key)
       categoryActions.selectedIndex(key)
     },
     [category]
@@ -50,7 +49,6 @@ export const Category = ({ category }: Category.Props): JSX.Element =>  {
     <CategoryWrapper>
       <CategoryContainer>
         {category.items.map(item => {return <div key={item.key} onClick={() => clickItemListener(item.key)}><ItemStyle><div style={{padding: '5px 5px 20px 5px'}}> {item.name} </div></ItemStyle></div>})}
-        <div>Test click Index: {category.selectedIndex}</div>
       </CategoryContainer>
     </CategoryWrapper>
   )
