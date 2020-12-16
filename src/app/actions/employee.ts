@@ -1,7 +1,7 @@
 import { ActionType, createAsyncAction } from 'typesafe-actions'
 import { useMemo } from 'react';
 import { Dispatch, bindActionCreators } from 'redux';
-import { IRequest, IResponse, IError } from 'app/sagas/api.interface';
+import { IRequest, IResponse, IError } from 'app/sagas/employee';
 
 export interface IEmployee {
   id: string

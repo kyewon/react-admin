@@ -2,21 +2,32 @@ import { takeLatest, call, put, all } from 'redux-saga/effects'
 import { EmployeeActions, IEmployee } from 'app/actions/employee'
 import axios from 'axios'
 
-export const fetchEmployees = (): Promise<IEmployee> => {
+export interface IRequest {}
+
+export interface IResponse {
+  status: string,
+  employees: IEmployee[],
+  message: string,
+}
+
+export interface IError {
+  message: string
+}
+
+export const fetchEmployees = (): Promise<IResponse> => {
   return axios.get('http://dummy.restapiexample.com/api/v1/employees')
     .then(res => {
-      console.log('res=>', res.data.data)
       if (res.status !== 200) {
         throw new Error(res.statusText)
       }
-      return res.data.data
+      return JSON.parse(res.request.response) as Promise<IResponse>
     })
 }
 
 function* fetch() {
   try {
     const employees = yield call(fetchEmployees)
-    yield put({ type: EmployeeActions.FETCH_EMPLOYEES.SUCCESS, payload: { employees: employees } })
+    yield put({ type: EmployeeActions.FETCH_EMPLOYEES.SUCCESS, payload: {status: employees.status, employees: employees.data, message: employees.message } })
   } catch (e) {
     yield put({ type: EmployeeActions.FETCH_EMPLOYEES.FAILURE, payload: { message: e.message } })
   }

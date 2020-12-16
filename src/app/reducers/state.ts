@@ -9,7 +9,7 @@ export interface IRootState {
 
 export namespace RootState {
   export type SampleState = State.ISampleState[];
-  export type EmployeeState = State.IEmployee[];
+  export type EmployeeState = {status: string, employees: State.IEmployee[], message: string }
   export type AdminState = State.IAdminState;
   export type CategoryState = State.ICategoryState;
 }
