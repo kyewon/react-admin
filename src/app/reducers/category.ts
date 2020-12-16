@@ -7,11 +7,11 @@ const initialState: RootState.CategoryState = {
   items: [
     {
       key: 1,
-      name: '직장 인증'
+      name: '서버통신 샘플'
     },
     {
       key: 2,
-      name: '서버통신 샘플'
+      name: '두번째 주제'
     },
     {
       key: 3,
