@@ -54,13 +54,11 @@ a {
   cursor: pointer;
 }`;
 
-export namespace Header {
-  export interface Props {
-    admin: IAdminState,
-  }
+export interface Props {
+  admin: IAdminState,
 }
 
-export const Header = ({ admin }: Header.Props): JSX.Element =>  {
+export const Header = ({ admin }: Props): JSX.Element =>  {
 
   const dispatch = useDispatch()
   const adminActions = useAdminActions(dispatch)

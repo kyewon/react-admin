@@ -27,14 +27,11 @@ const ItemStyle = styled.div`
     cursor: pointer;
   }
 `
-
-export namespace Category {
-  export interface Props {
-    category: ICategoryState,
-  }
+export interface Props {
+  category: ICategoryState,
 }
 
-export const Category = ({ category }: Category.Props): JSX.Element =>  {
+export const Category = ({ category }: Props): JSX.Element =>  {
   const dispatch = useDispatch()
   const categoryActions = useCategoryActions(dispatch)
   const clickItemListener = React.useCallback(
