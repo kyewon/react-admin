@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { IRootState } from 'app/reducers';
 import { employeeColumns } from 'app/reducers/employee';
 import { Constants } from 'app/styleConstants'
-import { Sample, Employee, Header, GlobalStyle, Category, MainContent, RightContent, Home } from 'app/components';
+import { Sample, Employee, EmployeeProfile, Header, GlobalStyle, Category, MainContent, RightContent, Home } from 'app/components';
 import { useEmployee } from 'app/sagas/hooks/useEmployee'
 import { Helmet } from 'react-helmet-async';
 import { RouteComponentProps } from 'react-router-dom';
@@ -57,7 +57,7 @@ export const MainApp = ({ history, location, match }: MainApp.Props) => {
       {category.selectedIndex === 2 && MainWrapper(<div>1</div>) }
       {category.selectedIndex === 3 && MainWrapper(<div>click key 3</div>) }
 
-      {RightWrapper(<div> in right area. {employeeState.employeeProfile.id !== 0 && <div>{JSON.stringify(employeeState.employeeProfile)}</div>} </div>)}
+      {RightWrapper(<div> {employeeState.employeeProfile.id !== 0 && <div><EmployeeProfile profile = {employeeState.employeeProfile} /></div>} </div>)}
       <GlobalStyle/>
       </div>}
       {!isLogin && <Home/>}

@@ -15,6 +15,7 @@ export interface IEmployeeProfile {
   year: number
   color: string
   pantone_value: string
+  info: IEmployee
 }
 
 export namespace EmployeeActions {

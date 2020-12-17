@@ -2,7 +2,11 @@ import { createReducer } from 'typesafe-actions'
 import { RootState } from './state';
 import { EmployeeActions } from 'app/actions/employee';
 
-const initialState: RootState.EmployeeState = {employees: [], employeeProfile: {id: 0, name: '', year: 0, color: '', pantone_value: ''} }
+const initialEmployee = { id: 0, email: '', first_name: '', last_name: '', avatar: '' }
+const initialState: RootState.EmployeeState = {
+  employees: [initialEmployee],
+  employeeProfile: {id: 0, name: '', year: 0, color: '', pantone_value: '', info: initialEmployee } 
+}
 
 export const employeeReducer = createReducer<RootState.EmployeeState, EmployeeActions.ReturnActionType>(initialState)
   .handleAction(EmployeeActions.fetchEmployees.success, (state, action) => {
@@ -16,7 +20,6 @@ export const employeeReducer = createReducer<RootState.EmployeeState, EmployeeAc
   })
 
   .handleAction(EmployeeActions.getEmployeeInfo.success, (state, action) => {
-    console.log('handleAction action.payload.employeeProfile => ', action.payload.employeeProfile)
     return { ...state,  employeeProfile: action.payload.employeeProfile}
   })
   .handleAction(EmployeeActions.getEmployeeInfo.failure, (state, action) => {
@@ -31,7 +34,7 @@ export const employeeColumns = [
     field: 'id',
     headerName: 'Id',
     type: 'number',
-    width: 60,
+    width: 50,
   },
   {
     field: 'email',

@@ -1,5 +1,6 @@
 export { Sample } from './Sample';
 export { Employee } from './Employee';
+export { EmployeeProfile } from './EmployeeProfile';
 export { Header } from './Header';
 export { Category } from './Category';
 export { Home } from './Home';

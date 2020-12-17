@@ -46,7 +46,9 @@ function* fetchAll() {
 
 function* fetchById({ payload }: any) {
   try {
-    const employee = yield call(() => fetchEmployeeById(payload))
+    const employee = yield call(() => fetchEmployeeById(payload.id))
+    employee.data['info'] = payload
+    
     yield put({ type: EmployeeActions.GET_EMPLOYEE.SUCCESS, payload: { employeeProfile : employee.data } })
   } catch (e) {
     yield put({ type: EmployeeActions.GET_EMPLOYEE.FAILURE, payload: { message: e.message } })

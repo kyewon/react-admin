@@ -29,8 +29,8 @@ export const Employee = ({columns, employees }: Props): JSX.Element => {
   const dispatch = useDispatch()
   const selectRowListener = React.useCallback(
     (data: any) => {
-      const id: string = data.data.id
-      dispatch(EmployeeActions.getEmployeeInfo.request(id))
+      const info: any = data.data
+      dispatch(EmployeeActions.getEmployeeInfo.request(info))
     },
     []
   )
@@ -38,7 +38,7 @@ export const Employee = ({columns, employees }: Props): JSX.Element => {
   return (
     <Wrapper>
       <div>in Employee info table</div>
-      <DataGrid columns={columns} rows={employees} autoHeight pageSize={3} onRowSelected={(data) => selectRowListener(data) } />
+      <DataGrid columns={columns} rows={employees} autoHeight pageSize={5} onRowSelected={(data) => selectRowListener(data) } />
     </Wrapper>
   )
 }
