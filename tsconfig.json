@@ -2,8 +2,8 @@
   "compilerOptions": {
     "sourceMap": true,
     "target": "es5",
-    "jsx": "react",
-    "module": "es6",
+    "jsx": "react-jsx",
+    "module": "esnext",
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "declaration": false,
@@ -12,12 +12,27 @@
     "noUnusedLocals": true,
     "strict": true,
     "outDir": "build",
-    "lib": ["es6", "es7", "dom"],
+    "lib": [
+      "es6",
+      "es7",
+      "dom"
+    ],
     "baseUrl": "src",
-    "paths": {
-      "app/*": ["./app/*"]
-    },
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
-  "exclude": ["build", "node_modules"]
+  "exclude": [
+    "build",
+    "node_modules"
+  ],
+  "include": [
+    "src"
+  ]
 }
