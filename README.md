@@ -1,10 +1,8 @@
 ## Description
 
-로그인기능, 게시판, 서버 통신, 데이터 핸들링 등
-리엑트를 활용한 웹
+react, redux, hook, saga, typescript, styled-components 등을 사용한 boilerplate 입니다.
 
-
-for example: [Demo](https://mxxnlighter.s3.ap-northeast-2.amazonaws.com/uploads/admin/build/index.html)
+동작 테스트: [Demo](https://mxxnlighter.s3.ap-northeast-2.amazonaws.com/uploads/admin/build/index.html)
 
 
 ## Installation
@@ -25,3 +23,8 @@ npm run start
 npm run build
 ```
 
+## Testing
+
+```bash
+npm run test
+```

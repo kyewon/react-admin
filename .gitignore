@@ -7,3 +7,5 @@ node_modules
 build
 dist
 package-lock.json
+coverage
+__snapshots__/*
